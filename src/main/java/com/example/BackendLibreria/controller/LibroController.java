@@ -40,7 +40,7 @@ public class LibroController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Long id,@Valid @RequestBody LibroRequestDto dto){
+    public ResponseEntity<Void> eliminar(@PathVariable Long id){
         libroService.eliminar(id);
         return ResponseEntity.noContent().build();
     }
