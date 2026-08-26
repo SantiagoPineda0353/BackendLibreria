@@ -23,7 +23,7 @@ public class Libro {
     private Long id;
 
     @Column(nullable=false)
-    private String nombre;
+    private String titulo;
 
     @Column(nullable=false)
     private String isbn;
