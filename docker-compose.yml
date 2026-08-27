@@ -18,6 +18,31 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    networks:
+      - libreria-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: libreria-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_URI: jdbc:mysql://db:3306/${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DRIVER: com.mysql.cj.jdbc.Driver
+    ports:
+      - "${BACKEND_PORT}:8080"
+    networks:
+      - libreria-network
 
 volumes:
   mysql_data:
+
+networks:
+  libreria-network:
+    driver: bridge

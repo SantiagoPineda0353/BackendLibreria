@@ -35,4 +35,7 @@ public class Usuario {
     @Column(name="fecha_nacimiento", nullable=false)
     private LocalDate fechaNacimiento;
 
+    @OneToMany(mappedBy = "usuario")
+    private List<Prestamo> prestamos = new ArrayList<>();
+
 }
